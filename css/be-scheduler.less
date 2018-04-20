@@ -1,0 +1,41 @@
+// out: be-scheduler.css, souremap: false, compress: true
+
+@import "normalize.css";
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+.border-radius { border-radius: 3px; }
+.margin { margin: 5px; }
+.padding { padding: 6px 12px; }
+.roboto { font-family: 'Roboto', sans-serif; }
+
+html { font-size: 62.5%; }
+
+body {
+    .roboto;
+    font-size: 1.6rem;
+}
+
+input, textarea, select, option {
+    border: 1px black solid;
+    .border-radius;
+    .margin;
+    .padding;
+    .roboto;
+}
+
+button {
+    background-color: black;
+    border: none;
+    .border-radius;
+    color: white;
+    .margin;
+    .padding;
+    .roboto;
+}
+
+.validation-message {
+    .border-radius;
+    color: green;
+    font-size: 1.4rem;
+    text-align: center;
+}
