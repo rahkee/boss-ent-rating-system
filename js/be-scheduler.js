@@ -1,28 +1,5 @@
-var array = [];
-
-function addPerson(name){
-
-    var newPerson = {
-        "name": name,
-        "isActive": true,
-        "ratingPrev": 0,
-        "ratingCurr": 0
-    }
-
-    return newPerson;
-}
-
-var rayCopy = addPerson("Ray");
-var meCopy = addPerson("Me");
-
-array.push(rayCopy);
-array.push(meCopy);
-
-console.log(array);
-
 document.addEventListener("DOMContentLoaded", function(){
-    // localStorage can only store strings!
-    var localStorage = window.localStorage;
+
 });
 
 /***** Adding People to the List *****/
