@@ -4,18 +4,16 @@
   <title>BOSS Entertainment - Scheduler</title>
   <meta charset="utf-8">
 
-  <link rel="stylesheet" href="css/be-scheduler.css">
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/be-scheduler.css" />
 </head>
 
 <body>
-    <form>
-        <input class="input-name" type="text">
-        <input type="submit" value="Add" />
-    </form>
+    <input id="inputName" type="text" placeholder="Enter name...">
 
     <p class="validation-message"></p>
 
-    <ul class="name-list"></ul>
+    <ul id="nameList"></ul>
 
     <!-- Scripts -->
     <script src="js/be-scheduler.js"></script>
