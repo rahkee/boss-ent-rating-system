@@ -1,17 +1,24 @@
 "use strict";
 
-var nameInput = document.getElementById('inputName');
 var count = 0;
 var bossBae = [];
+
+var nameInput = document.getElementById('inputName');
+
+inputName.addEventListener("keyup", function(e) {
+    if (e.keyCode === 13) {
+        createBossBae()
+    }
+}, false);
 
 function createBossBae() {
 
     var name = nameInput.value;
 
     if (!duplicateExists(name) && inputName.value !== "") {
-
         addBaeToList(name);
-        inputName.value = "";
+    } else {
+        displayDuplicateError(name)
     }
 
     showBossBaes();
@@ -45,6 +52,14 @@ function duplicateExists(name) {
     return false;
 }
 
+var valMsgBox = document.getElementById('valMsgBox');
+var valMsgBoxText = document.createTextNode("");
+
+function displayDuplicateError(name) {
+    valMsgBox.appendChild(valMsgBoxText);
+    valMsgBoxText.nodeValue = name + " is a duplicate entry...";
+}
+
 function addBaeToList(name) {
 
     bossBae.push({
@@ -54,10 +69,8 @@ function addBaeToList(name) {
     })
 
     count++;
+    inputName.value = "";
+    valMsgBoxText.nodeValue = "";
 }
 
-inputName.addEventListener("keyup", function(e) {
-    if (e.keyCode === 13) {
-        createBossBae()
-    }
-}, false);
+inputName.value = "";

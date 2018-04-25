@@ -36,3 +36,7 @@ ul li:hover {
 ul li:last-of-type {
   border-bottom: none;
 }
+.validation-message {
+  color: red;
+  text-align: center;
+}
