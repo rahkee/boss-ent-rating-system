@@ -44,22 +44,27 @@ var lastRated = 0;
 
 function showBossBaes() {
 
+    console.table(bossBae);
+
     for (var bae of bossBae) {
 
         // TODO
         if (lastRated === bae.rating) {
 
-            console.log("lastRated", lastRated, "is the same as", "bae.rating", bae.rating, " check ID for seniority!");
+            // Check for seniority!
+
             lastRated = bae.rating;
 
         } else if (lastRated > bae.rating){
 
-            console.log("lastRated", lastRated, "should go up!");
+            // lastRated should go up!
+
             lastRated = bae.rating;
 
         } else if (lastRated < bae.rating) {
 
-            console.log("bae.rating", bae.rating, "should go up!");
+            // bae.rating should go up!
+            
             lastRated = bae.rating;
         }
 
@@ -94,7 +99,7 @@ function rateUp(rateName) {
     for (var bae of bossBae) {
 
         if (bae.name === rateName) {
-            bae.rating = bae.rating + 1;
+            bae.rating++;
         }
     }
 
