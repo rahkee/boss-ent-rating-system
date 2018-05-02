@@ -29,9 +29,9 @@ var lastRated = 0;
 function showBossBaes() {
 
     // TODO
-    // bossBae.forEach(function orderInBae(bae) {
-    //     console.log("Order the baes!");
-    // });
+    bossBae.forEach(function orderInBae(bae) {
+        console.log(bae);
+    });
 
     while (baeList.firstChild) {
         baeList.removeChild(baeList.firstChild)
@@ -67,6 +67,8 @@ function rateUp(a) {
             bae.rating++;
         }
     }
+
+    saveBossBaeDB(bossBae);
 }
 
 var valMsgBox = document.getElementById('valMsgBox');
