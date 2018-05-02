@@ -1,10 +1,5 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", function entryAccess() {
-    getBossBaeDB();
-    clearText();
-})
-
 var bossDB = window.localStorage;
 var bossBae = [];
 var nameInput = document.getElementById('inputName');
@@ -27,56 +22,22 @@ function createBossBae() {
     showBossBaes();
 }
 
-function getBossBaeDB() {
-
-    if (bossDB.length !== 0) {
-        bossBae = JSON.parse(bossDB.getItem('currentSession'));
-        showBossBaes();
-    }
-}
-
-function saveBossBaeDB(currentBossBaeObj) {
-    bossDB.setItem('currentSession', JSON.stringify(currentBossBaeObj));
-}
-
 var baeList = document.getElementById('nameList');
+var baeOrder = [];
 var lastRated = 0;
 
 function showBossBaes() {
 
-    console.table(bossBae);
-
-    for (var bae of bossBae) {
-
-        // TODO
-        if (lastRated === bae.rating) {
-
-            // Check for seniority!
-
-            lastRated = bae.rating;
-
-        } else if (lastRated > bae.rating){
-
-            // lastRated should go up!
-
-            lastRated = bae.rating;
-
-        } else if (lastRated < bae.rating) {
-
-            // bae.rating should go up!
-            
-            lastRated = bae.rating;
-        }
-
-        lastRated = bae.rating;
-    }
+    // TODO
+    bossBae.forEach(function orderInBae(bae) {
+        console.log("Order the baes!");
+    });
 
     while (baeList.firstChild) {
         baeList.removeChild(baeList.firstChild)
     }
 
     for (var bae of bossBae) {
-
         var baeListNode = document.createElement('li');
         var baeNameText = document.createTextNode(bae.name);
         baeListNode.appendChild(baeNameText);
@@ -92,6 +53,8 @@ function showBossBaes() {
         baeListNode.appendChild(btnRateUp);
         baeList.appendChild(baeListNode);
     }
+
+    clearText();
 }
 
 function rateUp(rateName) {
@@ -136,16 +99,31 @@ function clearText() {
 
 function addBaeToList(name) {
 
+    debugger
+
     bossBae.push({
         id: count + 1,
         name: name,
-        rating: 0
+        rating: rateUp(symbol)
     })
 
     saveBossBaeDB(bossBae);
     count++;
 }
 
-// Check to see which Rating score is higher, then bump them up, higher than ID number...
-// Check to see which ID number is lower, since they will have seniority?
-// Save to MongoDB...
+function getBossBaeDB() {
+
+    if (bossDB.length !== 0) {
+        bossBae = JSON.parse(bossDB.getItem('currentSession'));
+        showBossBaes();
+    }
+}
+
+function saveBossBaeDB(currentBossBaeObj) {
+    bossDB.setItem('currentSession', JSON.stringify(currentBossBaeObj));
+}
+
+document.addEventListener("DOMContentLoaded", function entryAccess() {
+    getBossBaeDB();
+    clearText();
+})
