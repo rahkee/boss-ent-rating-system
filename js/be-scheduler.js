@@ -29,9 +29,9 @@ var lastRated = 0;
 function showBossBaes() {
 
     // TODO
-    bossBae.forEach(function orderInBae(bae) {
-        console.log("Order the baes!");
-    });
+    // bossBae.forEach(function orderInBae(bae) {
+    //     console.log("Order the baes!");
+    // });
 
     while (baeList.firstChild) {
         baeList.removeChild(baeList.firstChild)
@@ -46,8 +46,8 @@ function showBossBaes() {
         var btnRateUpText = document.createTextNode('+');
         btnRateUp.appendChild(btnRateUpText);
 
-        btnRateUp.addEventListener("click", function() {
-            rateUp(this.previousSibling.textContent);
+        btnRateUp.addEventListener("click", function(a) {
+            rateUp(a);
         }, false)
 
         baeListNode.appendChild(btnRateUp);
@@ -57,17 +57,16 @@ function showBossBaes() {
     clearText();
 }
 
-function rateUp(rateName) {
+function rateUp(a) {
+
+    var buttonName = a.originalTarget.previousSibling.data;
 
     for (var bae of bossBae) {
 
-        if (bae.name === rateName) {
+        if (bae.name === buttonName) {
             bae.rating++;
         }
     }
-
-    saveBossBaeDB(bossBae);
-    showBossBaes();
 }
 
 var valMsgBox = document.getElementById('valMsgBox');
@@ -99,16 +98,18 @@ function clearText() {
 
 function addBaeToList(name) {
 
-    debugger
-
     bossBae.push({
         id: count + 1,
         name: name,
-        rating: rateUp(symbol)
-    })
+        rating: 0,
+    });
 
     saveBossBaeDB(bossBae);
     count++;
+}
+
+function saveBossBaeDB(currentBossBaeObj) {
+    bossDB.setItem('currentSession', JSON.stringify(currentBossBaeObj));
 }
 
 function getBossBaeDB() {
@@ -117,10 +118,6 @@ function getBossBaeDB() {
         bossBae = JSON.parse(bossDB.getItem('currentSession'));
         showBossBaes();
     }
-}
-
-function saveBossBaeDB(currentBossBaeObj) {
-    bossDB.setItem('currentSession', JSON.stringify(currentBossBaeObj));
 }
 
 document.addEventListener("DOMContentLoaded", function entryAccess() {
