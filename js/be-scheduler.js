@@ -24,18 +24,20 @@ function createBossBae() {
 
 var baeList = document.getElementById('nameList');
 var baeOrder = [];
-var lastRated = 0;
 
 function showBossBaes() {
-
-    // TODO
-    bossBae.forEach(function orderInBae(bae) {
-        console.log(bae);
-    });
 
     while (baeList.firstChild) {
         baeList.removeChild(baeList.firstChild)
     }
+
+    // TODO: Order!
+    for (var bae of bossBae) {
+        console.log(bae);
+    }
+
+    // console.table(bossBae);
+    console.table(baeOrder);
 
     for (var bae of bossBae) {
         var baeListNode = document.createElement('li');
@@ -106,12 +108,14 @@ function addBaeToList(name) {
         rating: 0,
     });
 
-    saveBossBaeDB(bossBae);
     count++;
+    saveBossBaeDB(bossBae);
 }
 
 function saveBossBaeDB(currentBossBaeObj) {
     bossDB.setItem('currentSession', JSON.stringify(currentBossBaeObj));
+    showBossBaes();
+    bossDB.setItem('currentSessionCount', count);
 }
 
 function getBossBaeDB() {
@@ -119,6 +123,7 @@ function getBossBaeDB() {
     if (bossDB.length !== 0) {
         bossBae = JSON.parse(bossDB.getItem('currentSession'));
         showBossBaes();
+        count = JSON.parse(bossDB.getItem('currentSessionCount'));
     }
 }
 
